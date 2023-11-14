@@ -1,0 +1,68 @@
+// script for tabs display in urls 
+      var get_url = window.location.href;
+    
+      var res = get_url.split('#');
+      //var re = res[1];
+      //console.log("res"+res[1]);
+      if(res[1]!= undefined)
+      {
+        if(res[1].length > 4 ){
+         var tabs = res[1].split('&');
+         var tab_name = tabs[0];
+        }else{
+        var tab_name = res[1];
+        }
+      } else{
+        var tab_name = res[1];
+      }
+      //var tab_name = res[1];
+     
+      //console.log("tb"+tab_name);
+      if(tab_name === undefined){
+        // undefined
+        //console.log("For First Time");
+        // checkactivetab('tab1');
+        // var selected_li = $('a[href="#tab1"]').closest('li')
+        // selected_li.addClass('active');
+        $( ".tabs_bos > li:first-child" ).addClass( "active" );
+        //$('.tabs_bos li').eq(0).addClass("active");
+      }else{
+       
+        //console.log("tab_name"+tab_name);
+        // call function
+        checkactivetab(tab_name);
+        var selected_li = $('a[href="#' + tab_name + '"]').closest('li')
+        selected_li.addClass('active');
+      }
+
+$("#tabs li a").click(function(e){
+      var get_url = e.target.href;
+      var tabs = get_url.split("#");      
+      var tab_name = tabs[1];
+      $(this).parent().addClass('active');
+      $(".P1, .P2, .P3, .P4, .P5, .P6, .P7, .P8, .P9, .P10").hide();
+      // call function
+      //console.log(tab_name);
+      // if(tab_name == 'tab7'){
+      //   actvietabbyid('P1');
+      // }
+      $('.btn').css('background', '#fd752c');
+      checkactivetab(tab_name);    
+})
+
+function checkactivetab(tab_name){
+    var tabs_array = ['tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9','tab10','tab11','tab12','tab13','tab14','tab15','tab16','tab17','tab18','tab19','tab122','tabA','tabB'];
+    for (let i = 0; i < tabs_array.length; i++) {
+        if (tabs_array[i] === tab_name) {
+            $("#"+tabs_array[i]).show();
+        }else{
+            $("#"+tabs_array[i]).hide();
+        }
+    } 
+}
+
+$('.btn').on('click', function() {
+    $('.btn').css('background', '#fd752c');
+    $(this).css('background', '#174772');
+    //$('#GFG_DOWN').text("Background Color Changed!");
+});
